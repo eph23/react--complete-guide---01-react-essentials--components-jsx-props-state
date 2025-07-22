@@ -1,0 +1,61 @@
+import { CORE_CONCEPTS } from "./data.js";
+
+import Header from "./components/Header/Header.jsx";
+import CoreComponents from "./components/CoreComponents.jsx";
+import TabButton from "./components/TabButton.jsx";
+
+import { Component } from "react";
+
+function App() {
+    let tabContent = "Please click a button";
+
+    function handleSelect(selectedButton) {
+        tabContent = selectedButton;
+        console.log(selectedButton);
+    }
+
+    console.log("APP COMPONENT RENDERING");
+
+    return (
+        <div>
+            <Header />
+            <main>
+                <section id="core-concepts">
+                    <h2>Time to get started!</h2>
+                    <ul>
+                        <CoreComponents {...CORE_CONCEPTS[0]} />
+                        <CoreComponents {...CORE_CONCEPTS[1]} />
+                        <CoreComponents {...CORE_CONCEPTS[2]} />
+                        <CoreComponents {...CORE_CONCEPTS[3]} />
+
+                        {/*                         <CoreComponents
+                            title={CORE_CONCEPTS[3].title}
+                            description={CORE_CONCEPTS[3].description}
+                            image={CORE_CONCEPTS[3].image}
+                        /> */}
+                    </ul>
+                </section>
+                <section id="examples">
+                    <h2>Examples</h2>
+                    <menu>
+                        <TabButton onSelect={() => handleSelect("components")}>
+                            Components
+                        </TabButton>
+                        <TabButton onSelect={() => handleSelect("jsx")}>
+                            JSX
+                        </TabButton>
+                        <TabButton onSelect={() => handleSelect("props")}>
+                            Props
+                        </TabButton>
+                        <TabButton onSelect={() => handleSelect("state")}>
+                            State
+                        </TabButton>
+                    </menu>
+                    {tabContent}
+                </section>
+            </main>
+        </div>
+    );
+}
+
+export default App;
